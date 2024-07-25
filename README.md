@@ -1,7 +1,7 @@
 # Alan Captcha API PHP library
 
 This package allows to make use of the Alan Captcha API.  
-See https://docs.alancaptcha.com for further details about the API and other options for integration like javascript widget and CMS plugins for wordpress, typo3 or NEOS.  
+See https://docs.alancaptcha.com for further details about the API and other options for integration like javascript widget and CMS plugins for WordPress, TYPO3 or Neos CMS.  
 
 ## Installation
 
@@ -28,7 +28,7 @@ You can then use this `JWT` to send them to clients and require them to solve th
 
 #### Retrieve a more difficult challenge
 
-The siteKey encodes a default difficulty, which was specified during siteKey creation.  
+The `siteKey` encodes a default difficulty, which was specified during siteKey creation.  
 But, if you detect abuse of your infrastructure, you can also increase the difficulty on your own.  
 
 ```php
@@ -48,7 +48,7 @@ The solution for a challenge is an array of puzzle id's and the corresponding so
 ]
 ```
 
-To validate the solutions for a challenge JWT you can need to provide your private apiKey, the challenge JWT and the solutions array:
+To validate the solutions for a challenge JWT you need to provide your private apiKey, the challenge JWT and the solutions array:
 
 ```php
 $api = new \AlanCaptcha\Php\AlanApi();
