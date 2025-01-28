@@ -158,6 +158,40 @@ class AlanApi
         throw new \RuntimeException('Failed to request challenge from API: '.$response['meta']['status'].':'.\json_encode($response['body']), 1721658747673);
     }
 
+    /**
+     * Test if given credentials (ApiKey, SiteKey) are valid
+     *
+     * @param string $apiKey The private api key
+     * @param string $siteKey The public site key
+     * @param bool $checkApiKey Should the api key be checked for validity
+     * @return bool True if valid, False if invalid, Exception on service or network disruption
+     */
+    public function validateCredentials(string $apiKey, string $siteKey, bool $checkApiKey = false): bool
+    {
+        $body = [
+            'siteKey' => $siteKey,
+        ];
+
+        if ($checkApiKey) {
+            $body['key'] = $apiKey;
+        }
+
+        $response = $this->client->post(
+            $this->baseUrl.'/credentials/validate',
+            \json_encode($body),
+            [
+                'Content-Type: application/json'
+            ]
+        );
+
+        if ($response['meta']['status'] == '200') {
+            return $response['body']['success'];
+        }
+
+        throw new \RuntimeException('Failed to validate Credentials with API: '.$response['meta']['status'].':'.\json_encode($response['body']), 1738080217);
+
+    }
+
     public function health() {
         $response = $this->client->get($this->baseUrl.'/health');
 
