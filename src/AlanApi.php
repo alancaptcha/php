@@ -20,7 +20,7 @@ class AlanApi
      */
     protected string $baseUrl = 'https://api.alancaptcha.com';
 
-    public function __construct(HttpClient $client=null)
+    public function __construct(?HttpClient $client = null)
     {
         if ($client === null) {
             $client = new CurlClient();

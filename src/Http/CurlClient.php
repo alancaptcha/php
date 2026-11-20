@@ -12,12 +12,12 @@ class CurlClient implements HttpClient
         return $this->send('GET', $url,  $headers);
     }
 
-    public function post(string $url, string $body = null, array $headers = []): array
+    public function post(string $url, ?string $body = null, array $headers = []): array
     {
         return $this->send('POST', $url, $headers, $body);
     }
 
-    public function send(string $method, string $url,  array $headers = [], string $body = null): array
+    public function send(string $method, string $url,  array $headers = [], ?string $body = null): array
     {
         $ch = curl_init();
 
